@@ -25,14 +25,14 @@ const getDetail = (id) => {
 
   let sql = `select * from blogs where id = '${id}'`
   return exec(sql);
-  
+
 }
 
 const newBlog = (blogData = {}) => {
 
   const title = blogData.title
   const content = blogData.content
-  const author = '尼采';
+  const author = blogData.author;
   const createtime = Date.now();
   const sql = `
     insert into blogs (title,content,createtime,author) 
@@ -50,10 +50,9 @@ const newBlog = (blogData = {}) => {
 }
 
 const updateBlog = (id, blogData = {}) => {
-
   const title = blogData.title
   const content = blogData.content
-  const sql = `update blogs set title='${title}',content='${content}' where id = '${id}';`
+  const sql = `update blogs set title='${title}',content='${content}' where id=${id};`
   return exec(sql).then(updateData => {
     if (updateData.affectedRows > 0) {
       return true
@@ -62,8 +61,8 @@ const updateBlog = (id, blogData = {}) => {
   })
 }
 
-const delBlog = (id) => {
-  const author = '尼采'
+const delBlog = (id, author) => {
+  // const author = '尼采'
   const sql = `delete from blogs where id = '${id}' and author = '${author}'`
   return exec(sql).then(delData => {
     if (delData.affectedRows > 0) {
