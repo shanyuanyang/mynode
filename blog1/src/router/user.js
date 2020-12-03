@@ -20,7 +20,7 @@ const handleUserRouter = (req, res) => {
     return result.then(loginData => {
 
 
-      console.log('loginData----', loginData)
+      // console.log('loginData----', loginData)
       if (loginData.username) {
 
         // 设置 session
